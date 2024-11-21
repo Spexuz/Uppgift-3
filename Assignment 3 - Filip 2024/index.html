@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        console.log('Loop Script2A is Running'); 
+        const loop2a = document.createElement('h1') //Borde skapa nytt loop2a?
+            for (let index1 = 1; index1 <= 10; index1++)  //ifall framtida inte funkar så har det antagligen med index1++ att göra? får komma tillbaka till detta (/index1++ funkar)
+                if (index1 === 5)
+                    loop2a.textContent += "Q" // om I = 5 så ersättern den med Q
+                else if (index1 % 2 === 0) 
+                    loop2a.textContent += "X"; // jämna utkomster markeras med X
+                else 
+                    loop2a.textContent += "O"; // ojämna markeras med O
+         document.body.appendChild(loop2a);
+         console.log("Loop Script 2A Finished")
+    </script> 
+<!-- Ovan är 2a-->
+<!-- Nedan är 2b-->
+    <script> //2b (för framtiden: hade kunnat lägga reslutaten i en array istället för hur allt ligger nu, hade antagligen fixat problemen vi hade me att den inte ville läsa ut mellanrummen?)
+         console.log('Loop Script2B is Running');  
+        const loop2b = document.createElement('h2')
+        let result = ''
+            for (let index2 = 1; index2 <= 20; index2++)  {
+                const randomSpace = Math.ceil(Math.random() * 5)
+                result += 'O' + '&nbsp'.repeat(randomSpace)  //måste använda &nbsp istället för ' ' eftersom HTML tydligen sätter ihop vanliga mellanslag
+            }
+
+            loop2b.innerHTML = result; // .textContent funkade inte utan fick byta till innerHTML eftersom jag bytade till non braking space character över ' '
+            document.body.appendChild(loop2b)
+            console.log("Loop Script2B Finished")
+    </script>
+<!-- Nedan är Assignment 2c-->
+<script>
+    console.log("cityNames Script is running");
+    try {
+        let cityNames = ["kiruna", "uppsala", "malmo", "gothenburg", "stockholm"]; // hade inte const varit bättre här då jag vet att i just detta fallet kommer inte arrayen att modifieras?
+                //går igenom arrayen
+        for (let cityNamesIndex = 0; cityNamesIndex < cityNames.length; cityNamesIndex++) {
+            let currentName = cityNames[cityNamesIndex]
+
+            if (typeof currentName !== "string") { //validerar att det den uträknar är en sträng
+                throw new Error("Non-String detected in Array") //kastar ett specifict error om det inte är en sträng
+            }
+            
+            // går igenom innhållet i arrayen och spottar ut information till consolen
+            for (let charIndex = 0; charIndex < currentName.length; charIndex++) {
+                let currentChar = currentName[charIndex].toUpperCase();
+                console.log(currentChar);
+            }
+            //let firstLetter = currentName.charAt(0).toUpperCase();
+            //console.log(firstLetter);
+        }
+    } catch (error) {
+        console.error("Error:", error.message) 
+        //provade mig på att hantera errors, specifikt allmänna
+        //men även en specifik ifall arrayen matas med något annat än en Sträng då "funktionen?/elementet?" inte kan hantera annat än strängar
+        // med tanke på att du specificerade att vi skulle använda let och inte const (ie för att kunna expandera scriptet med inputs i framtiden)
+    }
+    console.log("cityNames Script Finished");
+</script>
+
+</html>
